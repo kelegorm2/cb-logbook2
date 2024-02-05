@@ -1,25 +1,29 @@
-import { useRouter } from "next/router";
-import { useState } from "react";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { useDebouncedCallback } from "use-debounce";
 
 const SearchBar = () => {
-  const router = useRouter();
-  const [searchQuery, setSearchQuery] = useState("");
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+  const query = searchParams.get("query");
 
-  const handleSearch = () => {
-    router.push({
-      pathname: "/search",
-      query: { q: searchQuery },
-    });
-  };
+  const createQueryString = useDebouncedCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set(name, value);
+
+      replace(`${pathname}?${params.toString()}`);
+    },
+    300
+  );
 
   return (
-    <div>
+    <div className="searchBar">
       <input
-        type="text"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
+        type="search"
+        placeholder="Search"
+        onChange={(e) => createQueryString("query", e.target.value)}
       />
-      <button onClick={handleSearch}>Search</button>
     </div>
   );
 };

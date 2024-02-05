@@ -6,16 +6,47 @@ import { usePathname } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { UserButton } from "@/components/auth/user-button";
+import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import SearchBar from "@/components/Search/SearchBar";
 
 export const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900">
+    <nav className="bg-gray-800 py-3 relative">
+      <div className="container mx-auto flex px-8">
+        <div className="flex items-center justify-center">
+          <Link href="/dashboard">
+            <Image
+              src="/ctrlb-complete.svg"
+              width={50}
+              height={30}
+              alt="CtrlB Logo"
+            />
+          </Link>
+        </div>
+        <div className="lg:hidden text-white grow flex justify-end">
+          <HamburgerMenuIcon />
+        </div>
+        <div className="lg:flex justify-between grow absolute lg:relative lg:top-0 left-0 w-full top-10 py-10 lg:py-0 lg:bg-inherit bg-black">
+          <div className="flex flex-col lg:flex-row">
+            <Link className="text-white lg:mr-7" href="/dashboard">
+              Dashboard
+            </Link>
+            <Link className="text-white lg:mr-7" href="/projects">
+              Projects
+            </Link>
+          </div>
+          <div className="text-center">
+            <UserButton />
+          </div>
+        </div>
+      </div>
+    </nav>
+    /* <nav className="bg-white border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link
-          href="/"
+          href="/dashboard"
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
           <Image
