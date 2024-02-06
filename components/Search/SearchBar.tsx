@@ -18,10 +18,11 @@ const SearchBar = () => {
   );
 
   return (
-    <div className="searchBar">
+    <div>
       <input
         type="search"
         placeholder="Search"
+        className="border border-gray-200 dark:border-gray-700 rounded-md text-sm p-0 w-50 focus:outline-none focus:ring-2 focus:border-transparent"
         onChange={(e) => createQueryString("query", e.target.value)}
       />
     </div>

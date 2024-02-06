@@ -8,14 +8,24 @@ import { Button } from "@/components/ui/button";
 import { UserButton } from "@/components/auth/user-button";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import SearchBar from "@/components/Search/SearchBar";
+import { use, useRef, useState } from "react";
 
 export const Navbar = () => {
+  const [isMenuHidden, setIsMenuHidden] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
+  const toggleMenu = () => {
+    setIsMenuHidden(!isMenuHidden);
+    if (ref.current) {
+      ref.current.classList.toggle("hidden");
+    }
+  };
+
   return (
-    <nav className="bg-gray-800 py-3 relative">
-      <div className="container mx-auto flex px-8">
-        <div className="flex items-center justify-center">
+    <nav>
+      <div>
+        <div>
           <Link href="/dashboard">
             <Image
               src="/ctrlb-complete.svg"
@@ -25,21 +35,22 @@ export const Navbar = () => {
             />
           </Link>
         </div>
-        <div className="lg:hidden text-white grow flex justify-end">
-          <HamburgerMenuIcon />
+
+        <div ref={ref}>
+          <Link href="/dashboard">Dashboard</Link>
+          <Link href="/projects">Projects</Link>
         </div>
-        <div className="lg:flex justify-between grow absolute lg:relative lg:top-0 left-0 w-full top-10 py-10 lg:py-0 lg:bg-inherit bg-black">
-          <div className="flex flex-col lg:flex-row">
-            <Link className="text-white lg:mr-7" href="/dashboard">
-              Dashboard
-            </Link>
-            <Link className="text-white lg:mr-7" href="/projects">
-              Projects
-            </Link>
-          </div>
-          <div className="text-center">
-            <UserButton />
-          </div>
+
+        <div>
+          <SearchBar />
+        </div>
+
+        <div>
+          <UserButton />
+        </div>
+
+        <div>
+          <HamburgerMenuIcon onClick={toggleMenu} />
         </div>
       </div>
     </nav>
