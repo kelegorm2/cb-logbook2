@@ -1,0 +1,45 @@
+
+.navContainer{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    height: 100%;
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.menuContainer{
+    flex-grow: 1;
+    display: flex;
+    gap: 20px;
+}
+
+.HamburgerMenuIcon{
+    display: none;
+}
+
+@media (max-width: 768px){
+    .navContainer{
+        justify-content: space-between;
+    }
+
+    .menuContainer{
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        gap: 5px;
+        background-color: #f2f2f2;
+        width: 100%;
+        text-align: center;
+    }
+
+    .menuHidden{
+        display: flex;
+    }
+
+    .HamburgerMenuIcon{
+        display: block;
+    }
+}

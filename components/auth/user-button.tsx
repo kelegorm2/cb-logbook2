@@ -1,7 +1,7 @@
 "use client";
 
-import { FaUser } from "react-icons/fa";
 import { ExitIcon, GearIcon } from "@radix-ui/react-icons";
+import styles from "@/app/general.module.css";
 
 import {
   DropdownMenu,
@@ -20,13 +20,7 @@ export const UserButton = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        {/* <Avatar>
-          <AvatarImage src={user?.image || ""} />
-          <AvatarFallback className="bg-sky-500">
-            <FaUser className="text-white" />
-          </AvatarFallback>
-        </Avatar> */}
-        <span className="text-slate-200 text-xs">
+        <span className={styles.userButon}>
           {user?.name || user?.email || "User"}
         </span>
       </DropdownMenuTrigger>

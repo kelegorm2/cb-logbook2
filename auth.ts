@@ -56,6 +56,7 @@ export const {
       }
 
       if (token.role && session.user) {
+        console.log("si que escribo rol............", token.role)
         session.user.role = token.role as UserRole;
       }
 

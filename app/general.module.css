@@ -1,0 +1,79 @@
+.mainWrapper{
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.mainWrapper h1{
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.mainWrapper h2{
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+
+}
+.aButton{
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: var(--light);
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    display:  inline-block;
+    width: 100%;
+    max-width: 200px;
+    text-align: center;
+
+}
+
+.projectLink {
+    color: var(--black);
+    display: block;
+    text-decoration: none;
+    border: 1px solid var(--gray);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 20px 0;
+    box-shadow: 0px 10px 15px -17px var(--gray);
+}
+
+.userButon{
+    color: var(--light);
+}
+
+.logStyle{
+    color: var(--gray);
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid var(--gray);
+    margin: 5px 0;
+}
+
+.logStyle div:first-child{
+    /* flex-grow: 1; */
+}
+
+.logDetails{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    background-color: var(--lightGray);
+    padding: 4px;
+    font-size: small;
+    border-radius: 5px;
+}
+.logDesc{
+    padding: 4px;
+}
+
+.tagsWrapper{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}

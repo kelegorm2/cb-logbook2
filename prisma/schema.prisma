@@ -22,8 +22,10 @@ model User {
   image                 String?
   password              String?
   role                  UserRole               @default(USER)
+  logs                  Log[]
   accounts              Account[]
   isTwoFactorEnabled    Boolean                @default(false)
+  isUserallowed         Boolean                @default(false)
   twoFactorConfirmation TwoFactorConfirmation?
 }
 
@@ -80,4 +82,29 @@ model TwoFactorConfirmation {
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId])
+}
+
+model Project {
+  id          String @id @default(uuid())
+  name        String @db.VarChar(255)
+  description String @db.VarChar(255)
+  logs        Log[]
+}
+
+model Log {
+  id          String   @id @default(uuid())
+  description String   @db.Text
+  created_at  DateTime @default(now()) @db.DateTime(6)
+  updated_at  DateTime @updatedAt @db.DateTime(6)
+  tags        Tag[]
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String
+  project     Project  @relation(fields: [projectId], references: [id])
+  projectId   String
+}
+
+model Tag {
+  id   String @id @default(uuid())
+  name String @unique @db.VarChar(255)
+  logs Log[]
 }

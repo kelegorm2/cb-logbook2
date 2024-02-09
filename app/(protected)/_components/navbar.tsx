@@ -7,8 +7,8 @@ import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { UserButton } from "@/components/auth/user-button";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
-import SearchBar from "@/components/Search/SearchBar";
 import { use, useRef, useState } from "react";
+import styles from "./styles.module.css";
 
 export const Navbar = () => {
   const [isMenuHidden, setIsMenuHidden] = useState(false);
@@ -18,112 +18,34 @@ export const Navbar = () => {
   const toggleMenu = () => {
     setIsMenuHidden(!isMenuHidden);
     if (ref.current) {
-      ref.current.classList.toggle("hidden");
+      ref.current.classList.toggle(styles.menuHidden);
     }
   };
 
   return (
-    <nav>
+    <nav className={styles.navContainer}>
       <div>
-        <div>
-          <Link href="/dashboard">
-            <Image
-              src="/ctrlb-complete.svg"
-              width={50}
-              height={30}
-              alt="CtrlB Logo"
-            />
-          </Link>
-        </div>
-
-        <div ref={ref}>
-          <Link href="/dashboard">Dashboard</Link>
-          <Link href="/projects">Projects</Link>
-        </div>
-
-        <div>
-          <SearchBar />
-        </div>
-
-        <div>
-          <UserButton />
-        </div>
-
-        <div>
-          <HamburgerMenuIcon onClick={toggleMenu} />
-        </div>
-      </div>
-    </nav>
-    /* <nav className="bg-white border-gray-200 dark:bg-gray-900">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <Link
-          href="/dashboard"
-          className="flex items-center space-x-3 rtl:space-x-reverse"
-        >
+        <Link href="/dashboard">
           <Image
             src="/ctrlb-complete.svg"
-            width={200}
-            height={128}
-            className="h-8"
+            width={80}
+            height={50}
             alt="CtrlB Logo"
           />
         </Link>
-        <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li>
-              <a
-                href="#"
-                className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
-                aria-current="page"
-              >
-                Projects
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <SearchBar />
-        </div>
+      </div>
+
+      <div ref={ref} className={styles.menuContainer}>
+        <Link href="/dashboard">Dashboard</Link>
+        <Link href="/projects">Projects</Link>
+      </div>
+      <div>
         <UserButton />
       </div>
-    </nav>
-    /*
-    <nav className="bg-secondary flex justify-between items-center p-4 rounded-xl w-[600px] shadow-sm">
-      <div className="flex gap-x-2">
-        <Button 
-          asChild
-          variant={pathname === "/server" ? "default" : "outline"}
-        >
-          <Link href="/server">
-            Server
-          </Link>
-        </Button>
-        <Button 
-          asChild
-          variant={pathname === "/client" ? "default" : "outline"}
-        >
-          <Link href="/client">
-            Client
-          </Link>
-        </Button>
-        <Button 
-          asChild
-          variant={pathname === "/admin" ? "default" : "outline"}
-        >
-          <Link href="/admin">
-            Admin
-          </Link>
-        </Button>
-        <Button 
-          asChild
-          variant={pathname === "/settings" ? "default" : "outline"}
-        >
-          <Link href="/settings">
-            Settings
-          </Link>
-        </Button>
+
+      <div className={styles.HamburgerMenuIcon}>
+        <HamburgerMenuIcon onClick={toggleMenu} />
       </div>
-      <UserButton />
-    </nav>*/
+    </nav>
   );
 };

@@ -1,4 +1,5 @@
 import { Navbar } from "./_components/navbar";
+import styles from "./styles.module.css";
 
 interface ProtectedLayoutProps {
   children: React.ReactNode;
@@ -6,11 +7,12 @@ interface ProtectedLayoutProps {
 
 const ProtectedLayout = ({ children }: ProtectedLayoutProps) => {
   return (
-    <main className="h-full w-full ">
-      <Navbar />
-      <div className="p-4 max-w-screen-xl mx-auto flex items-center">
-        {children}
+    <main className={styles.mainWrapper}>
+      <div className={styles.navbar}>
+        <Navbar />
       </div>
+      <div className={styles.content}>{children}</div>
+      <div className={styles.footer}>footer</div>
     </main>
   );
 };

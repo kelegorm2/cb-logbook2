@@ -1,0 +1,28 @@
+.mainWrapper{
+    display: grid;
+    grid-template-rows: 50px 1fr 50px;
+    height: 100svh;
+    grid-template-areas:
+        "navbar" 
+        "content"
+        "footer";
+}
+
+.navbar{
+    grid-area: navbar;
+    background-color: #f2f2f2;
+}
+
+.content{
+    grid-area: content;
+    padding: 20px;
+}
+
+.footer{
+    grid-area: footer;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+}

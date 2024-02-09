@@ -63,3 +63,21 @@ export const RegisterSchema = z.object({
     message: "Name is required",
   }),
 });
+
+export const NewProjectSchema = z.object({
+  name: z.string().min(1, {
+    message: "Name is required",
+  }),
+  description: z.string().min(1, {
+    message: "Description is required",
+  }),
+});
+
+export const NewLogSchema = z.object({
+  description: z.string().min(1, {
+    message: "Description is required",
+  }),
+  logs: z.array(z.string()).min(1, {
+    message: "At least one log is required",
+  }),
+});
