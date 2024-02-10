@@ -59,71 +59,68 @@ export default function CreateProject(props: PropType) {
   };
 
   return (
-    <div className={styles.mainWrapper}>
-      <h1>Create Project</h1>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="space-y-4">
-            <FormField
-              control={form.control}
-              name="description"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Name</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      {...field}
-                      disabled={isPending}
-                      placeholder="What happened?"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <div className={styles.tagsWrapper}>
-              {props.tags.map((item) => (
-                <FormField
-                  key={item.id}
-                  control={form.control}
-                  name="logs"
-                  render={({ field }) => {
-                    return (
-                      <FormItem
-                        key={item.id}
-                        className="flex flex-row items-start space-x-1 space-y-0"
-                      >
-                        <FormControl>
-                          <Checkbox
-                            checked={field.value?.includes(item.id)}
-                            onCheckedChange={(checked) => {
-                              return checked
-                                ? field.onChange([...field.value, item.id])
-                                : field.onChange(
-                                    field.value?.filter(
-                                      (value) => value !== item.id
-                                    )
-                                  );
-                            }}
-                          />
-                        </FormControl>
-                        <FormLabel className="text-sm font-normal">
-                          {item.name}
-                        </FormLabel>
-                      </FormItem>
-                    );
-                  }}
-                />
-              ))}
-            </div>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        <div className="space-y-4">
+          <FormField
+            control={form.control}
+            name="description"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Name</FormLabel>
+                <FormControl>
+                  <Textarea
+                    {...field}
+                    disabled={isPending}
+                    placeholder="What happened?"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <div className={styles.tagsWrapper}>
+            {props.tags.map((item) => (
+              <FormField
+                key={item.id}
+                control={form.control}
+                name="logs"
+                render={({ field }) => {
+                  return (
+                    <FormItem
+                      key={item.id}
+                      className="flex flex-row items-start space-x-1 space-y-0"
+                    >
+                      <FormControl>
+                        <Checkbox
+                          checked={field.value?.includes(item.id)}
+                          onCheckedChange={(checked) => {
+                            return checked
+                              ? field.onChange([...field.value, item.id])
+                              : field.onChange(
+                                  field.value?.filter(
+                                    (value) => value !== item.id
+                                  )
+                                );
+                          }}
+                        />
+                      </FormControl>
+                      <FormLabel className="text-sm font-normal">
+                        {item.name}
+                      </FormLabel>
+                    </FormItem>
+                  );
+                }}
+              />
+            ))}
           </div>
-          <FormError message={error} />
-          <FormSuccess message={success} />
-          <Button disabled={isPending} type="submit" className="w-full my-8">
-            Create an Project
-          </Button>
-        </form>
-      </Form>
-    </div>
+        </div>
+        <FormError message={error} />
+        <FormSuccess message={success} />
+        <Button disabled={isPending} type="submit" className="w-full my-8">
+          Create an Project
+        </Button>
+      </form>
+    </Form>
   );
 }
